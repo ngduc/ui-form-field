@@ -1,0 +1,318 @@
+.left25pct {
+  margin-left: 25%;
+}
+
+.ez-field {
+  height: 25px;
+  margin: 5px 0;
+  padding: 0 4px;
+  min-width: 200px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ez-field-full {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ez-field-full label {
+  margin-right: 10px;
+}
+
+.ez-field-error {
+  border: 1px solid #d40000;
+}
+
+.ez-error {
+  color: #d40000;
+  font-size: 0.8rem;
+}
+
+.ez-thumb {
+  height: 200px;
+}
+
+.ez-toggle {
+  width: 100%;
+}
+
+.ez-toggle-inline {
+  margin: auto 0;
+  margin-left: 10px;
+}
+
+.ez-bootstrap-toggle {
+  width: 100%;
+}
+
+.ez-bootstrap-file {
+  padding: 0;
+}
+
+.ez-bootstrap-toggle-inline {
+  margin: auto 0;
+  margin-left: 10px;
+  top: 6px;
+}
+
+.ez-semanticui2-file {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.ez-semanticui2-toggle {
+  margin: 0;
+}
+
+.ez-semanticui2-toggle-inline {}
+
+.ez-submit {
+  margin-top: 5px;
+}
+
+.ez-btn {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 2.5rem;
+  border: 2px solid #6E6E6E;
+  border-radius: 0;
+  background-color: #6E6E6E;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: inherit;
+  transition: all 1s ease;
+}
+
+.ez-btn.ez-btn--primary:hover,
+.ez-btn.ez-btn--primary:focus,
+.ez-btn.ez-btn--primary:active {
+  border-color: #00305a;
+  background-color: #0059a6;
+  color: #FFFFFF;
+}
+
+.ez-btn.ez-btn--secondary:hover,
+.ez-btn.ez-btn--secondary:focus,
+.ez-btn.ez-btn--secondary:active {
+  border-color: #193e2d;
+  background-color: #2e7555;
+  color: #FFFFFF;
+}
+
+.ez-btn.ez-btn--tertiary:hover,
+.ez-btn.ez-btn--tertiary:focus,
+.ez-btn.ez-btn--tertiary:active {
+  border-color: #b60a00;
+  background-color: #ff1103;
+  color: #FFFFFF;
+}
+
+.ez-btn--filled:hover,
+.ez-btn--filled:focus,
+.ez-btn--filled:active {
+  border-color: #2e2e2e;
+  background-color: #555555;
+  color: #FFFFFF;
+}
+
+.ez-btn--filled.ez-btn--primary {
+  border-color: #0074D9;
+  background-color: #0074D9;
+  color: #FFFFFF;
+}
+
+.ez-btn--filled.ez-btn--secondary {
+  border-color: #3D9970;
+  background-color: #3D9970;
+  color: #FFFFFF;
+}
+
+.ez-btn--filled.ez-btn--tertiary {
+  border-color: #FF4136;
+  background-color: #FF4136;
+  color: #FFFFFF;
+}
+
+.ez-btn--outlined {
+  background-color: transparent;
+  color: #6E6E6E;
+}
+
+.ez-btn--outlined:hover,
+.ez-btn--outlined:focus,
+.ez-btn--outlined:active {
+  border-color: #2e2e2e;
+  background-color: #555555;
+  color: #FFFFFF;
+}
+
+.ez-btn--outlined.ez-btn--primary {
+  border-color: #0074D9;
+  color: #0074D9;
+}
+
+.ez-btn--outlined.ez-btn--secondary {
+  border-color: #3D9970;
+  color: #3D9970;
+}
+
+.ez-btn--outlined.ez-btn--tertiary {
+  border-color: #FF4136;
+  color: #FF4136;
+}
+
+.ez-btn--clear {
+  border-color: transparent;
+  background-color: transparent;
+  color: #6E6E6E;
+}
+
+.ez-btn--clear:hover,
+.ez-btn--clear:focus,
+.ez-btn--clear:active {
+  border-bottom: 2px solid #6E6E6E;
+  color: #6E6E6E;
+}
+
+/* react-toggle */
+
+.react-toggle {
+  touch-action: pan-x;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+
+.react-toggle-track {
+  width: 50px;
+  height: 24px;
+  padding: 0;
+  border-radius: 30px;
+  background-color: #4D4D4D;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #000000;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: #19AB27;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: #128D15;
+}
+
+.react-toggle-track-check {
+  position: absolute;
+  width: 14px;
+  height: 10px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  left: 8px;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-check {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle-track-x {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0px;
+  bottom: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  line-height: 0;
+  right: 10px;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s ease;
+  -moz-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-track-x {
+  opacity: 0;
+}
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #4D4D4D;
+  border-radius: 50%;
+  background-color: #FAFAFA;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: 27px;
+  border-color: #19AB27;
+}
+
+.react-toggle--focus .react-toggle-thumb {
+  -webkit-box-shadow: 0px 0px 3px 2px #0099E0;
+  -moz-box-shadow: 0px 0px 3px 2px #0099E0;
+  box-shadow: 0px 0px 2px 3px #0099E0;
+}
+
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+  -webkit-box-shadow: 0px 0px 5px 5px #0099E0;
+  -moz-box-shadow: 0px 0px 5px 5px #0099E0;
+  box-shadow: 0px 0px 5px 5px #0099E0;
+}
