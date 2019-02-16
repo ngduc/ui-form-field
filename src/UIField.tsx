@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
+import * as ReactTags from 'react-tag-autocomplete'
 import { cn, getChildrenParts, isOptionArray, toPascalCase, } from './Utils'
 import * as _get from 'lodash.get'
 
@@ -217,6 +218,7 @@ interface UIFieldProps {
   checkbox?: string|boolean
   checkboxes?: string|boolean
   select?: string|boolean
+  tagSelect?: string|boolean
   options?: any[]
   toggle?: string|boolean
   inline?: string|boolean
@@ -458,61 +460,58 @@ const UIField = (props: UIFieldProps) => {
   //   )
   // }
 
-  // if (props.tagInput) {
-  //   const value = props.formik.values[fieldName] || []
-  //   const { options = [] } = clonedProps
-  //   delete clonedProps.className
+  if (props.tagSelect) {
+    const values = props.formik.values[fieldName] || []
+    const { options = [] } = clonedProps
+    delete clonedProps.className
 
-  //   const tags = value.map((id: string) => {
-  //     const selectedOption = options.find(option => (option.value === id))
+    const tags = values.map((id: string) => {
+      const selectedOption = options['find'](option => (option.value === id))
+      if (selectedOption) {
+        return {
+          id: selectedOption.value,
+          name: selectedOption.label,
+        }
+      } else {
+        return {
+          id,
+          name: id,
+        }
+      }
+    })
+    const suggestions = options.map(({ label, value }) => ({ id: value, name: label }))
+    return (
+      <div className={mainClassName}>
+        <Label/>
+        <ReactTags
+          addOnBlur={true}
+          allowNew={true}
+          allowBackspace={true}
+          autofocus={false}
+          minQueryLength={0}
+          tags={tags}
+          placeholder={placeholder}
+          suggestions={suggestions}
+          handleValidate={({ name }: { name: string }) => name.length}
+          handleAddition={({ name }: { name: string }) => {
+            const foundOpt = options['find'](option => (option.label === name))
+            values.push(foundOpt ? foundOpt.value : name)
+            props.formik.setFieldValue(fieldName, values)
+            props.onChange && props.onChange(values)
+          }}
+          handleDelete={(index: number) => {
+            values.splice(index, 1)
+            props.formik.setFieldValue(fieldName, values)
+            props.onChange && props.onChange(values)
+          }}
 
-  //     if (selectedOption) {
-  //       return {
-  //         id: selectedOption.value,
-  //         name: selectedOption.label,
-  //       }
-  //     } else {
-  //       return {
-  //         id,
-  //         name: id,
-  //       }
-  //     }
-  //   })
-  //   const suggestions = options.map(({ label, value }) => ({ id: value, name: label }))
-
-  //   return (
-  //     <div className={mainClassName}>
-  //       <Label/>
-  //       <ReactTags
-  //         addOnBlur={true}
-  //         allowNew={true}
-  //         allowBackspace={true}
-  //         autofocus={false}
-  //         minQueryLength={0}
-
-  //         tags={tags}
-  //         suggestions={suggestions}
-  //         handleValidate={({ name }: { name: string }) => name.length}
-  //         handleAddition={({ name }: { name: string }) => {
-  //           value.push(name)
-
-  //           props.formik.setFieldValue(fieldName, value)
-  //           props.onChange && props.onChange(value)
-  //         }}
-  //         handleDelete={(index: number) => {
-  //           value.splice(index, 1)
-
-  //           props.formik.setFieldValue(fieldName, value)
-  //           props.onChange && props.onChange(value)
-  //         }}
-
-  //         {...clonedProps}
-  //       />
-  //       <small className={helpClass}>{props.help}</small>
-  //       <ErrorMessage/>
-  //     </div>
-  //   )
-  // }
+          {...clonedProps}
+        />
+        <small className={helpClass}>{props.help}</small>
+        <ErrorMessage/>
+      </div>
+    )
+  }
 
   // ------ regular field
   delete clonedProps.onChange // otherwise it will override the FastField onChange handler below.
