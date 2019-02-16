@@ -5,7 +5,7 @@
 A simple way to work with Forms in React.
 
 - Live Demo: [Codesandbox](https://codesandbox.io/s/on50k50wy)
-- Code examples: [Link](../src/examples)
+- Code examples: [Link](/src/examples)
 
 ### 🌟 Features
 
