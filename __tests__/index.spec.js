@@ -16,7 +16,7 @@ beforeAll(async () => {
   await page.waitForSelector('.form-group');
 });
 
-describe('uiform', () => {
+describe('ui-form-field', () => {
   test('should render all fields', async () => {
     const fields = await page.$$('.form-group');
     expect(fields).toHaveLength(7);

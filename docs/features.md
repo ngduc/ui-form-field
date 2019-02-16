@@ -1,8 +1,8 @@
-# uiform
+# ui-form-field
 
-[![Build Status](https://travis-ci.org/ngduc/uiform.svg?branch=master)](https://travis-ci.org/ngduc/uiform)
+[![Build Status](https://travis-ci.org/ngduc/ui-form-field.svg?branch=master)](https://travis-ci.org/ngduc/ui-form-field)
 
-Easy React Form - uiform
+Easy React Form - ui-form-field
 
 - Live Demo: [Codesandbox](https://codesandbox.io/s/on50k50wy)
 
@@ -22,8 +22,8 @@ Not just shorter syntax, it's also offering:
 ### 📦 Usage
 
 ```JS
-$ npm install uiform
-import { FormContainer, Form, Field, Button } from 'uiform';
+$ npm install ui-form-field
+import { FormContainer, Form, Field, Button } from 'ui-form-field';
 
 <FormContainer onSubmit={this.onSubmit} render={props => (
   <Form use="bootstrap4">

@@ -9,7 +9,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <h1>uiform</h1>
+        <h1>ui-form-field</h1>
         <BasicExample />
       </div>
     );

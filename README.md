@@ -1,6 +1,6 @@
-# uiform
+# ui-form-field
 
-[![Build Status](https://travis-ci.org/ngduc/uiform.svg?branch=master)](https://travis-ci.org/ngduc/uiform)
+[![Build Status](https://travis-ci.org/ngduc/ui-form-field.svg?branch=master)](https://travis-ci.org/ngduc/ui-form-field)
 
 A simple way to work with Forms in React.
 
@@ -10,8 +10,8 @@ A simple way to work with Forms in React.
 ### 🌟 Features
 
 ```JS
-$ npm install uiform
-import { FormContainer, Form, Field, Button } from 'uiform';
+$ npm install ui-form-field
+import { FormContainer, Form, Field, Button } from 'ui-form-field';
 
 <FormContainer onSubmit={this.onSubmit} render={props => (
   <Form use="bootstrap4">

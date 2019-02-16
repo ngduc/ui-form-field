@@ -1,6 +1,6 @@
 {
-  "name": "uiform",
-  "version": "0.9.0",
+  "name": "ui-form-field",
+  "version": "0.9.1",
   "description": "UIForm based on formik - a simple way to work with Forms in React.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://ngduc@github.com/ngduc/uiform.git"
+    "url": "git+https://ngduc@github.com/ngduc/ui-form-field.git"
   },
   "keywords": [
     "react",
@@ -39,9 +39,9 @@
   "author": "Duc Nguyen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ngduc/uiform/issues"
+    "url": "https://github.com/ngduc/ui-form-field/issues"
   },
-  "homepage": "https://github.com/ngduc/uiform#readme",
+  "homepage": "https://github.com/ngduc/ui-form-field#readme",
   "dependencies": {
     "classnames": "^2.2.6",
     "dotenv": "^6.1.0",
