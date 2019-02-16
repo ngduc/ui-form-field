@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as Yup from 'yup';
 import { DisplayFormState } from '../Utils'
 
-import FormContainer from '../EzFormContainer'
-import Form from '../EzForm';
-import Field from '../EzField';
-import Button from '../EzButton';
+import FormContainer from '../UIFormContainer'
+import Form from '../UIForm';
+import Field from '../UIField';
+import Button from '../UIButton';
 
 const schema = Yup.object().shape({
   username: Yup.string().required('Username is required!'),

@@ -1,6 +1,6 @@
 {
   "name": "ui-form-field",
-  "version": "0.9.1",
+  "version": "0.9.3",
   "description": "UIForm based on formik - a simple way to work with Forms in React.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -74,6 +74,7 @@
     "faker": "^4.1.0",
     "jest": "^23.6.0",
     "jest-puppeteer": "^3.4.0",
+    "lodash.get": "^4.4.2",
     "nwb": "0.23.x",
     "puppeteer": "^1.9.0",
     "react": "^16.5.2",

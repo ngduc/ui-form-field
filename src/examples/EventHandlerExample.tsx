@@ -3,10 +3,10 @@ import * as Yup from 'yup';
 import { DisplayFormState } from '../Utils'
 import { log, roles } from '../Utils'
 
-import FormContainer from '../EzFormContainer'
-import Form from '../EzForm';
-import Field from '../EzField';
-import Button from '../EzButton';
+import FormContainer from '../UIFormContainer'
+import Form from '../UIForm';
+import Field from '../UIField';
+import Button from '../UIButton';
 
 export const genders = [
   { value: '', label: 'N/A'},

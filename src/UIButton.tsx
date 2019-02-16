@@ -4,9 +4,9 @@ import { pickHTMLProps } from 'pick-react-known-prop';
 
 const getClasses = (use: string) => {
   const defaults = {
-    button: 'ez-btn ez-btn--filled',
-    primary: 'ez-btn ez-btn--filled ez-btn--primary ez-submit',
-    secondary: 'ez-btn ez-btn--filled'
+    button: 'ui-btn ui-btn--filled',
+    primary: 'ui-btn ui-btn--filled ui-btn--primary ui-submit',
+    secondary: 'ui-btn ui-btn--filled'
   };
   if (use === 'bootstrap3' || use === 'bootstrap4') {
     defaults.button = 'btn';

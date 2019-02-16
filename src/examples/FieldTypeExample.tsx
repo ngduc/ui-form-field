@@ -3,10 +3,10 @@ import * as Yup from 'yup';
 import { DisplayFormState } from '../Utils'
 import { log, animals, roles, genders } from '../Utils'
 
-import FormContainer from '../EzFormContainer'
-import Form from '../EzForm';
-import Field from '../EzField';
-import Button from '../EzButton';
+import FormContainer from '../UIFormContainer'
+import Form from '../UIForm';
+import Field from '../UIField';
+import Button from '../UIButton';
 
 const schema = Yup.object().shape({
 })
@@ -31,6 +31,7 @@ export default class extends React.Component {
         <Field select options={animals} name="select" />
         <Field radios options={genders} name="radio" />
         <Field checkboxes options={roles} name="checkboxes" />
+        <Field checkbox name="singleCheckbox" />
         <Field number name="number" />
         <Field date name="date" />
         <Field time name="time" />

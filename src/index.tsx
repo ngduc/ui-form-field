@@ -1,7 +1,7 @@
-import EzFormContainer from './EzFormContainer';
-import EzForm from './EzForm';
-import EzField from './EzField';
-import EzButton from './EzButton';
+import UIFormContainer from './UIFormContainer';
+import UIForm from './UIForm';
+import UIField from './UIField';
+import UIButton from './UIButton';
 import BasicExample from './examples/BasicExample';
 import DynamicFormExample from './examples/DynamicFormExample';
 import EventHandlerExample from './examples/EventHandlerExample';
@@ -9,14 +9,14 @@ import FieldTypeExample from './examples/FieldTypeExample';
 import LayoutExample from './examples/LayoutExample';
 
 module.exports = {
-  FormContainer: EzFormContainer,
-  Form: EzForm,
-  Field: EzField,
-  Button: EzButton,
-  EzFormContainer,
-  EzForm,
-  EzField,
-  EzButton,
+  FormContainer: UIFormContainer,
+  Form: UIForm,
+  Field: UIField,
+  Button: UIButton,
+  UIFormContainer,
+  UIForm,
+  UIField,
+  UIButton,
   BasicExample,
   DynamicFormExample,
   EventHandlerExample,

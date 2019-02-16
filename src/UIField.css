@@ -1,0 +1,35 @@
+.simpleCheckbox input {
+    margin-right: 5px;
+  }
+  
+  .simpleCheckbox label {
+    font-weight: normal;
+  }
+  
+  .disabledCheckbox label {
+    cursor: not-allowed;
+  }
+  
+  .isInvalid {
+    border-color: var(--color-red);
+  }
+  
+  .invalidFeedback {
+    color: var(--color-red);
+  }
+  
+  .formGroup:first-child {
+    padding-left: 0;
+  }
+  
+  .formGroup:last-child {
+    padding-right: 0;
+  }
+  
+  .radioButton {
+    margin-right: 8px !important;
+  }
+  
+  .radioButtonLabel {
+    margin-right: 20px !important;
+  }

@@ -24,7 +24,7 @@ const getClasses = (use: string) => {
   return defaults;
 };
 
-interface IEzFormProps {
+interface IUIFormProps {
   use?: '' | 'bootstrap3' | 'bootstrap4' | 'spectre' | 'semanticui2',
   horizontal?: string|boolean,
   css?: any, // TODO: define interface for "css"
@@ -34,7 +34,7 @@ interface IEzFormProps {
   formik?: any; // FormikContext<{}>
 }
 
-const EzForm = (props: IEzFormProps) => {
+const UIForm = (props: IUIFormProps) => {
   const classes = getClasses(props.use);
 
   props.formik.ezUse = props.use; // bootstrap, spectre, etc.
@@ -51,4 +51,4 @@ const EzForm = (props: IEzFormProps) => {
   const className = props.className ? `${classes.form} ${props.className}` : classes.form
   return <Form {...props} className={className} />;
 };
-export default connect(EzForm);
+export default connect(UIForm);
