@@ -4,6 +4,8 @@ import Toggle from 'react-toggle';
 import * as ReactTags from 'react-tag-autocomplete'
 import { cn, getChildrenParts, isOptionArray, toPascalCase, } from './Utils'
 import * as _get from 'lodash.get'
+import SingleSelect from './custom/SingleSelect';
+import MultiSelect from './custom/MultiSelect';
 
 const getClasses = (use: string, isHorizontal: boolean) => {
   const defaults = {
@@ -219,6 +221,8 @@ interface UIFieldProps {
   checkboxes?: string|boolean
   select?: string|boolean
   tagSelect?: string|boolean
+  singleSelect?: string|boolean
+  multiSelect?: string|boolean
   options?: any[]
   toggle?: string|boolean
   inline?: string|boolean
@@ -240,9 +244,12 @@ const UIField = (props: UIFieldProps) => {
   const labelText = label || toPascalCase(fieldName);
 
   const errors = props.formik.errors;
+
+  const touched = _get(props.formik.touched, fieldName)
+  const isTouched = Array.isArray(touched) ? false : touched
   const hasErrors =
     _get(props.formik.errors, fieldName) &&
-    (_get(props.formik.touched, fieldName) || props.formik.submitCount > 0)
+    (isTouched || props.formik.submitCount > 0)
 
   const classes = getClasses(props.formik.ezUse, props.formik.ezHorizontal);
   const css = props.formik.ezCss || {}
@@ -276,10 +283,11 @@ const UIField = (props: UIFieldProps) => {
       {labelText}
     </label>
   )
-  const ErrorMessage = () =>
-    hasErrors ? (
+  const ErrorMessage = () => {
+    return hasErrors ? (
       <span className={errorClass}>{_get(errors, fieldName)}</span>
     ) : null
+  }
 
   const clonedProps = {
     ...props,
@@ -309,6 +317,28 @@ const UIField = (props: UIFieldProps) => {
       moreProps.type = type // HTML5 input types
     }
   })
+
+  if (props.singleSelect) {
+    return (
+      <div className={mainClassName}>
+        <Label/>
+        <SingleSelect {...props} className={`${hasErrors ? classes.invalidControl : ''}`} />
+        <small className={helpClass}>{props.help}</small>
+        <ErrorMessage/>
+      </div>
+    )
+  }
+
+  if (props.multiSelect) {
+    return (
+      <div className={mainClassName}>
+        <Label/>
+        <MultiSelect {...props} className={`${hasErrors ? classes.invalidControl : ''}`} />
+        <small className={helpClass}>{props.help}</small>
+        <ErrorMessage/>
+      </div>
+    )
+  }
 
   // ------ render <Field row .../>
   if (props.row) {

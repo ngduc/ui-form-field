@@ -178,6 +178,12 @@
   color: #6E6E6E;
 }
 
+/* --- override bootstrap --- */
+
+.is-invalid ~.invalid-feedback {
+  display: block; /* to fix checkboxes error message */
+}
+
 /* react-toggle */
 
 .react-toggle {
