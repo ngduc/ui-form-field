@@ -9,6 +9,11 @@ A simple way to work with Forms in React.
 
 ### 🌟 Features
 
+- Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
+- Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
+- Support popular and advanced field types: react-select, multi-select, tag input with auto-complete, etc.
+- Works well on mobile screens.
+
 ```JS
 $ npm install ui-form-field
 import { FormContainer, Form, Field, Button } from 'ui-form-field';
@@ -39,14 +44,9 @@ import { FormContainer, Form, Field, Button } from 'ui-form-field';
 )} />
 ```
 
-Result: (Full form, validation (with yup) & error messages)
+RESULT: (Full form, validation (with yup) & error messages)
 
 [![Screenshot](screenshot-types.png)](https://codesandbox.io/s/on50k50wy)
-
-- Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
-- Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
-- Support popular and advanced field types.
-- Works well on mobile screens.
 
 ### 📖 Documentation
 
