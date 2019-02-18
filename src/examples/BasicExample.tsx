@@ -10,7 +10,7 @@ import Button from '../UIButton';
 const schema = Yup.object().shape({
   email: Yup.string().required('Email is required!').email('Invalid Email!'),
   birthday: Yup.date().required('Birthday is required!'),
-  roles: Yup.array().required('Role is required!')
+  roles: Yup.array().required('Role(s) is required!')
 });
 
 export default class extends React.Component {

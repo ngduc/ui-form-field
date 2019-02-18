@@ -22,6 +22,8 @@ import { FormContainer, Form, Field, Button } from 'ui-form-field';
     <Field radios options={genders} name="radio" />
     <Field checkboxes options={roles} name="checkboxes" />
     <Field checkbox name="singleCheckbox" />
+    <Field singleSelect options={animals} name="singleSelect" />
+    <Field multiSelect options={animals} name="multiSelect" />
     <Field tagSelect name="tags" options={tags} />
     <Field number name="number" />
     <Field date name="date" />

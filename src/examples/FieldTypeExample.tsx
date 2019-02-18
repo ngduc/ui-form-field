@@ -32,6 +32,8 @@ export default class extends React.Component {
         <Field radios options={genders} name="radio" />
         <Field checkboxes options={roles} name="checkboxes" />
         <Field checkbox name="singleCheckbox" />
+        <Field singleSelect options={animals.slice(1)} name="singleSelect" />
+        <Field multiSelect options={animals.slice(1)} name="multiSelect" />
         <Field tagSelect name="tags" options={animals.slice(1)} />
         <Field number name="number" />
         <Field date name="date" />
