@@ -35,7 +35,7 @@ export default class MultiSelect extends React.Component<IProps> {
     if (newProps.options && Array.isArray(newProps.options)) {
       const changedItem = newProps.options.find((opt: any) => opt.value === val)
       if (changedItem && newProps.onChange) {
-        newProps.onChange(changedItem)
+        newProps.onChange({ item: changedItem, formik: newProps.formik })
       }
     }
   }
@@ -71,7 +71,7 @@ export default class MultiSelect extends React.Component<IProps> {
           // items is array of selected options [ { label: "...", value: "..." } ]
           const vals = items.map((obj: any) => obj.value)
           this.props.formik.setFieldValue(fieldName, items ? vals : '')
-          this.props.onChange && this.props.onChange(vals)
+          this.props.onChange && this.props.onChange({ formik: this.props.formik })
         }}
       />
     )

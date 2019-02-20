@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect, Form } from 'formik';
 import { clone } from './Utils';
+import * as _clone from 'lodash.clone'
 
 const getClasses = (use: string) => {
   const defaults = {
@@ -36,9 +37,10 @@ interface IUIFormProps {
 
 const UIForm = (props: IUIFormProps) => {
   const classes = getClasses(props.use);
+  const horizontal = typeof props.horizontal !== 'undefined' ? props.horizontal.toString() : ''
 
   props.formik.ezUse = props.use; // bootstrap, spectre, etc.
-  props.formik.ezHorizontal = typeof props.horizontal !== 'undefined';
+  props.formik.ezHorizontal = horizontal
   
   const customCss = clone(props.css);
   if (props.formik.ezHorizontal) {
@@ -47,8 +49,11 @@ const UIForm = (props: IUIFormProps) => {
     customCss.control = customCss.control || classes.control
   }
   props.formik.ezCss = customCss;
+
+  const clonedProps = _clone(props)
+  clonedProps.horizontal = horizontal
   
   const className = props.className ? `${classes.form} ${props.className}` : classes.form
-  return <Form {...props} className={className} />;
+  return <Form {...clonedProps} className={className} />;
 };
 export default connect(UIForm);

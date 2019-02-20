@@ -35,7 +35,7 @@ export default class SingleSelect extends React.Component<IProps> {
     if (newProps.options && Array.isArray(newProps.options)) {
       const changedItem = newProps.options.find((opt: any) => opt.value === val)
       if (changedItem && newProps.onChange) {
-        newProps.onChange(changedItem)
+        newProps.onChange({ item: changedItem, formik: newProps.formik })
       }
     }
   }
@@ -68,7 +68,7 @@ export default class SingleSelect extends React.Component<IProps> {
         searchable={options && options.length > 5 ? true : false}
         onChange={(item: any) => {
           this.props.formik.setFieldValue(fieldName, item ? item.value : '')
-          this.props.onChange && this.props.onChange(item)
+          this.props.onChange && this.props.onChange({ item, formik: this.props.formik })
         }}
       />
     )

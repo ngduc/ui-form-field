@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
 import * as ReactTags from 'react-tag-autocomplete'
-import { cn, getChildrenParts, isOptionArray, toPascalCase, } from './Utils'
+import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils'
 import * as _get from 'lodash.get'
 import SingleSelect from './custom/SingleSelect';
 import MultiSelect from './custom/MultiSelect';
@@ -69,7 +69,7 @@ function Checkbox(props: any) {
                 nextValue = field.value.concat(props.value);
                 form.setFieldValue(props.name, nextValue);
               }
-              props.onChange && props.onChange(nextValue);
+              props.onChange && props.onChange({ value: nextValue, formik: form });
             }}
           />
           &nbsp;
@@ -92,7 +92,7 @@ function Radio(props: any) {
               checked={field.value === props.value}
               onChange={() => {
                 form.setFieldValue(props.name, props.value);
-                props.onChange && props.onChange(props.value);
+                props.onChange && props.onChange({ value: props.value, formik: form });
               }}
             />
             &nbsp;
@@ -117,7 +117,7 @@ function UIToggle(props: any) {
             checked={checked}
             onChange={(e: any) => {
               form.setFieldValue(props.name, e.target.checked);
-              props.onChange && props.onChange(e.target.checked);
+              props.onChange && props.onChange({ value: e.target.checked, event: e, formik: form });
             }}
           />
         )
@@ -169,7 +169,7 @@ function FileUpload(props: any) {
           <React.Fragment>
             <input id={props.id || props.name} name={props.name} type="file" className={props.className || ''} onChange={(event) => {
               form.setFieldValue(props.name, event.currentTarget.files[0]);
-              props.onChange && props.onChange(event.currentTarget.files[0]);
+              props.onChange && props.onChange({ value: event.currentTarget.files[0], event, formik: form });
             }} />
             {props.withPreview && <Thumb file={form.values[props.name]} />}
           </React.Fragment>
@@ -181,8 +181,9 @@ function FileUpload(props: any) {
 
 function Row(props: any) {
   function renderChildren() {
-    return React.Children.map(props.children, (child: any) => {
+    return React.Children.map(props.children, (child: any, index: number) => {
       return React.cloneElement(child, {
+        key: index,
         className: "col-md-6"
       })
     })
@@ -397,7 +398,7 @@ const UIField = (props: UIFieldProps) => {
           onChange={(ev: any) => {
             const val = ev.target.checked
             props.formik.setFieldValue(fieldName, val)
-            props.onChange && props.onChange(val)
+            props.onChange && props.onChange({ value: val, event: ev, formik: props.formik })
           }}
         />
         &nbsp;
@@ -525,14 +526,15 @@ const UIField = (props: UIFieldProps) => {
           handleValidate={({ name }: { name: string }) => name.length}
           handleAddition={({ name }: { name: string }) => {
             const foundOpt = options['find'](option => (option.label === name))
-            values.push(foundOpt ? foundOpt.value : name)
+            const changedValue = foundOpt ? foundOpt.value : name
+            values.push(changedValue)
             props.formik.setFieldValue(fieldName, values)
-            props.onChange && props.onChange(values)
+            props.onChange && props.onChange({ value: changedValue, formik: props.formik })
           }}
           handleDelete={(index: number) => {
             values.splice(index, 1)
             props.formik.setFieldValue(fieldName, values)
-            props.onChange && props.onChange(values)
+            props.onChange && props.onChange({ formik: props.formik, index })
           }}
 
           {...clonedProps}
@@ -545,6 +547,8 @@ const UIField = (props: UIFieldProps) => {
 
   // ------ regular field
   delete clonedProps.onChange // otherwise it will override the FastField onChange handler below.
+  // delete to avoid react warning (it requires passing select="true", not shorthands like select, etc.)
+  deleteProperties(clonedProps, ['select', 'number', 'password', 'date', 'time', 'range', 'textarea'])
   return (
     <div className={mainClassName}>
       <Label/>
@@ -555,9 +559,9 @@ const UIField = (props: UIFieldProps) => {
           props.formik.handleChange(ev)
           if (_get(ev, 'nativeEvent.target.tagName') === 'INPUT') {
             props.onChange &&
-            props.onChange(_get(ev, 'nativeEvent.target.value')) // input's value
+            props.onChange({ value: _get(ev, 'nativeEvent.target.value'), event: ev, formik: props.formik }) // input's value
           } else {
-            props.onChange && props.onChange(ev) // generic event
+            props.onChange && props.onChange({ event: ev, formik: props.formik }) // generic event
           }
         }}
         validate={props.validate}

@@ -1,8 +1,10 @@
-## [1.0.0] - 2019-02-17
+## [1.0.1] - 2019-02-17
 
 ### Added
 - First commit - renamed & moved from ez-react-form repo to ui-form-field
 - New field types: singleSelect, multiSelect, tagSelect
+### Changed
+- BREAKING: new handler signature: onChange({ value, formik, event? })
 
 ## [0.7.0] - 2018-11-07
 

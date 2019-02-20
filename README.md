@@ -11,7 +11,8 @@ A simple way to work with Forms in React.
 
 - Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
 - Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
-- Support popular and advanced field types: react-select, multi-select, tag input with auto-complete, etc.
+- Support popular and advanced field types: react-select, multi-select, tag input with auto-complete.
+- Simplify use cases like: Dynamic (conditional) field rendering, mixing with other components within the form, custom fields.
 - Works well on mobile screens.
 
 ```JS

@@ -33,7 +33,7 @@ class Demo extends Component {
         <nav style={{ marginBottom: 10 }}>
           {Object.keys(Views).map(v => {
             return (
-              <a href="javascript:;" data-name={v} onClick={this.show} style={{ marginRight: 20 }}>
+              <a key={v} href="javascript:;" data-name={v} onClick={this.show} style={{ marginRight: 20 }}>
                 {v}
               </a>
             );
