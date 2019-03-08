@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect, Form } from 'formik';
 import { clone } from './Utils';
-import _clone from 'lodash.clone'
+import * as _clone from 'lodash.clone'
 
 const getClasses = (use: string) => {
   const defaults = {
