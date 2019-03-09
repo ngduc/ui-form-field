@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
-import * as ReactTags from 'react-tag-autocomplete';
 import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils';
 const _get = require('lodash.get');
 // import SingleSelect from './custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from './custom/MultiSelect'; // requires 'react-select' => increase bundle size
+// import TagSelect from './custom/TagSelect';
 
 const getClasses = (use: string, isHorizontal: boolean) => {
   const defaults = {
@@ -335,7 +335,7 @@ const UIField = (props: UIFieldProps) => {
     return (
       <div className={mainClassName}>
         <Label />
-        <props.custom {...props} className={`${hasErrors ? classes.invalidControl : ''}`} />
+        <props.custom {...props} fieldName={fieldName} className={`${hasErrors ? classes.invalidControl : ''}`} />
         <small className={helpClass}>{props.help}</small>
         <ErrorMessage />
       </div>
@@ -493,59 +493,6 @@ const UIField = (props: UIFieldProps) => {
   //     </div>
   //   )
   // }
-
-  if (props.tagSelect) {
-    const values = props.formik.values[fieldName] || [];
-    const { options = [] } = clonedProps;
-    delete clonedProps.className;
-
-    const tags = values.map((id: string) => {
-      const selectedOption = options['find'](option => option.value === id);
-      if (selectedOption) {
-        return {
-          id: selectedOption.value,
-          name: selectedOption.label
-        };
-      } else {
-        return {
-          id,
-          name: id
-        };
-      }
-    });
-    const suggestions = options.map(({ label, value }) => ({ id: value, name: label }));
-    return (
-      <div className={mainClassName}>
-        <Label />
-        <ReactTags
-          addOnBlur={true}
-          allowNew={true}
-          allowBackspace={true}
-          autofocus={false}
-          minQueryLength={0}
-          tags={tags}
-          placeholder={placeholder}
-          suggestions={suggestions}
-          handleValidate={({ name }: { name: string }) => name.length}
-          handleAddition={({ name }: { name: string }) => {
-            const foundOpt = options['find'](option => option.label === name);
-            const changedValue = foundOpt ? foundOpt.value : name;
-            values.push(changedValue);
-            props.formik.setFieldValue(fieldName, values);
-            props.onChange && props.onChange({ value: changedValue, formik: props.formik });
-          }}
-          handleDelete={(index: number) => {
-            values.splice(index, 1);
-            props.formik.setFieldValue(fieldName, values);
-            props.onChange && props.onChange({ formik: props.formik, index });
-          }}
-          {...clonedProps}
-        />
-        <small className={helpClass}>{props.help}</small>
-        <ErrorMessage />
-      </div>
-    );
-  }
 
   // ------ regular field
   delete clonedProps.onChange; // otherwise it will override the FastField onChange handler below.

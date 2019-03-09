@@ -9,10 +9,11 @@ import Field from '../UIField';
 import Button from '../UIButton';
 
 // --- for usage:
-// import { SingleSelect, MultiSelect } from '../../lib/custom';
+// import { SingleSelect, MultiSelect, TagSelect } from '../../lib/custom';
 // --- for compiling:
 // import SingleSelect from '../custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from '../custom/MultiSelect'; // requires 'react-select' => increase bundle size
+// import TagSelect from '../custom/TagSelect'; // requires 'react-tag-autocomplete' => increase bundle size
 
 const schema = Yup.object().shape({});
 
@@ -37,8 +38,8 @@ export default class extends React.Component {
         <Field checkboxes options={roles} name="checkboxes" />
         <Field checkbox name="singleCheckbox" />
         {/* <Field custom={SingleSelect} options={animals.slice(1)} name="singleSelect" />
-        <Field custom={MultiSelect} options={animals.slice(1)} name="multiSelect" /> */}
-        <Field tagSelect name="tags" options={animals.slice(1)} />
+        <Field custom={MultiSelect} options={animals.slice(1)} name="multiSelect" />
+        <Field custom={TagSelect} options={animals.slice(1)} name="tags" /> */}
         <Field number name="number" />
         <Field date name="date" />
         <Field time name="time" />

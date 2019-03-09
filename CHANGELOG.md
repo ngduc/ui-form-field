@@ -1,11 +1,11 @@
-## [1.1.2] - 03/08/2019
+## [1.1.5] - 03/08/2019
 
 ### Added
 - custom type, e.g. <UIField custom={CustomComponent} name="fieldName" />
 - formatted code; enabled formatOnSave;
 ### Changed
 - upgraded dependencies
-- BREAKING: separated out SingleSelect & MultiSelect (use 'react-select') as custom types to reduce bundle size
+- BREAKING: separated out SingleSelect, MultiSelect (use 'react-select') & TagSelect (use 'react-tag-autocomplete') as custom types to reduce bundle size
   - you need to import to use them separately (see examples).
 
 ## [1.0.1] - 2019-02-17
