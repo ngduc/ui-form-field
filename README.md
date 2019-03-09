@@ -4,12 +4,12 @@
 
 A simple way to work with Forms in React.
 
-- Live Demo: [Codesandbox](https://codesandbox.io/s/on50k50wy)
+- Live Demo: [Codesandbox](https://codesandbox.io/s/304nq7w4z6?view=editor&module=/src/examples/BasicExample.tsx)
 - Code examples: [Link](/src/examples)
 
 ### 🌟 Features
 
-- Lightweight: 28 kb
+- Lightweight: 26 kb
 - Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
 - Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
 - Support custom advanced field types: react-select, multi-select, tag input with auto-complete.
@@ -49,7 +49,7 @@ import { SingleSelect, MultiSelect } from 'ui-form-field/lib/custom'; // require
 
 RESULT: (Full form, validation (with yup) & error messages)
 
-[![Screenshot](screenshot-types.png)](https://codesandbox.io/s/on50k50wy)
+[![Screenshot](screenshot-types.png)](https://codesandbox.io/s/304nq7w4z6?view=editor&module=/src/examples/BasicExample.tsx)
 
 ### 📖 Development
 ```
