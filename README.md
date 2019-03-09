@@ -9,6 +9,7 @@ A simple way to work with Forms in React.
 
 ### 🌟 Features
 
+- Lightweight: 28 kb
 - Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
 - Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
 - Support custom advanced field types: react-select, multi-select, tag input with auto-complete.
