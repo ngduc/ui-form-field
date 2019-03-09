@@ -27,17 +27,17 @@ const getClasses = (use: string) => {
 };
 
 interface IEzButtonProps {
-  type?: string,
-  primary?: string|boolean,
-  secondary?: string|boolean,
-  submit?: any,
+  type?: string;
+  primary?: string | boolean;
+  secondary?: string | boolean;
+  submit?: any;
   // --- styles
-  className?: string,
-  gap?: string|number,
-  leftGap?: string|number,
-  rightGap?: string|number,
-  disabled?: string|boolean,
-  children?: any,
+  className?: string;
+  gap?: string | number;
+  leftGap?: string | number;
+  rightGap?: string | number;
+  disabled?: string | boolean;
+  children?: any;
   formik?: any; // FormikContext<{}>
 }
 
@@ -46,10 +46,10 @@ const EzButton = (props: IEzButtonProps) => {
   const isSubmit = props.submit || props.type === 'submit';
   const type = isSubmit ? 'submit' : 'button';
   const text = props.children ? props.children : isSubmit ? 'Submit' : 'Button';
-  const style: any = {}
+  const style: any = {};
   if (props.gap) {
-    style.marginLeft = props.gap
-    style.marginRight = props.gap
+    style.marginLeft = props.gap;
+    style.marginRight = props.gap;
   }
   if (props.leftGap) {
     style.marginLeft = props.leftGap;
@@ -57,14 +57,14 @@ const EzButton = (props: IEzButtonProps) => {
   if (props.rightGap) {
     style.marginRight = props.rightGap;
   }
-  const htmlProps = pickHTMLProps(props)
+  const htmlProps = pickHTMLProps(props);
 
-  let className = classes.button
+  let className = classes.button;
   if (isSubmit || props.primary) {
-    className = classes.primary
+    className = classes.primary;
   }
   if (props.secondary) {
-    className = classes.secondary
+    className = classes.secondary;
   }
   return (
     <button type={type} className={`${className} ${props.className}`} style={style} {...htmlProps}>

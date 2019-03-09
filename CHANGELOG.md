@@ -1,8 +1,17 @@
+## [1.1.0] - 03/08/2019
+
+### Added
+- custom type, e.g. <UIField custom={CustomComponent} name="fieldName" />
+- formatted code; enabled formatOnSave;
+### Changed
+- BREAKING: separated out SingleSelect & MultiSelect (use 'react-select') as custom types to reduce bundle size
+  - you need to import to use them separately (see examples).
+
 ## [1.0.1] - 2019-02-17
 
 ### Added
-- First commit - renamed & moved from ez-react-form repo to ui-form-field
-- New field types: singleSelect, multiSelect, tagSelect
+- first commit - renamed & moved from ez-react-form repo to ui-form-field
+- new field types: singleSelect, multiSelect, tagSelect
 ### Changed
 - BREAKING: new handler signature: onChange({ value, formik, event? })
 
@@ -16,7 +25,7 @@
 
 ### Added
 - more field types: textarea, number, password, file, date, time, range
-- Toggle & inline toggle
+- toggle & inline toggle
 - FieldTypeExample, LayoutExample
 - Semantic UI 2
 

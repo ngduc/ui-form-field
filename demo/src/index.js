@@ -20,8 +20,15 @@ const Views = {
 class Demo extends Component {
   state = { view: 'BasicExample' };
 
+  componentWillMount() {
+    const view = localStorage.getItem('view') || 'BasicExample';
+    this.setState({ view });
+  }
+
   show = ev => {
-    this.setState({ view: ev.target.dataset.name });
+    const view = ev.target.dataset.name;
+    this.setState({ view });
+    localStorage.setItem('view', view);
   };
 
   render() {
@@ -32,8 +39,9 @@ class Demo extends Component {
 
         <nav style={{ marginBottom: 10 }}>
           {Object.keys(Views).map(v => {
+            const style = { color: v === this.state.view ? 'teal' : 'blue', marginRight: 20 };
             return (
-              <a key={v} href="javascript:;" data-name={v} onClick={this.show} style={{ marginRight: 20 }}>
+              <a key={v} href="javascript:;" data-name={v} onClick={this.show} style={style}>
                 {v}
               </a>
             );

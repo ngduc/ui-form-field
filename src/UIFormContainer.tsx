@@ -1,3 +1,3 @@
 import { Formik } from 'formik';
 
-export default Formik
+export default Formik;

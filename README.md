@@ -11,13 +11,14 @@ A simple way to work with Forms in React.
 
 - Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
 - Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
-- Support popular and advanced field types: react-select, multi-select, tag input with auto-complete.
+- Support custom advanced field types: react-select, multi-select, tag input with auto-complete.
 - Simplify use cases like: Dynamic (conditional) field rendering, mixing with other components within the form, custom fields.
 - Works well on mobile screens.
 
 ```JS
 $ npm install ui-form-field
 import { FormContainer, Form, Field, Button } from 'ui-form-field';
+import { SingleSelect, MultiSelect } from 'ui-form-field/lib/custom'; // requires 'react-select'
 
 <FormContainer onSubmit={this.onSubmit} render={props => (
   <Form use="bootstrap4">
@@ -28,8 +29,8 @@ import { FormContainer, Form, Field, Button } from 'ui-form-field';
     <Field radios options={genders} name="radio" />
     <Field checkboxes options={roles} name="checkboxes" />
     <Field checkbox name="singleCheckbox" />
-    <Field singleSelect options={animals} name="singleSelect" />
-    <Field multiSelect options={animals} name="multiSelect" />
+    <Field custom={SingleSelect} options={animals} name="singleSelect" />
+    <Field custom={MultiSelect} options={animals} name="multiSelect" />
     <Field tagSelect name="tags" options={tags} />
     <Field number name="number" />
     <Field date name="date" />
@@ -48,6 +49,13 @@ import { FormContainer, Form, Field, Button } from 'ui-form-field';
 RESULT: (Full form, validation (with yup) & error messages)
 
 [![Screenshot](screenshot-types.png)](https://codesandbox.io/s/on50k50wy)
+
+### 📖 Development
+```
+$ yarn dev        Start Dev mode
+$ yarn test       Run tests (jest & puppeteer in headless mode)
+$ yarn build      Build (output to ./lib)
+```
 
 ### 📖 Documentation
 

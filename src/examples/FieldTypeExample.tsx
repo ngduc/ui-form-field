@@ -1,18 +1,22 @@
 import * as React from 'react';
 import * as Yup from 'yup';
-import { DisplayFormState } from '../Utils'
-import { log, animals, roles, genders } from '../Utils'
+import { DisplayFormState } from '../Utils';
+import { log, animals, roles, genders } from '../Utils';
 
-import FormContainer from '../UIFormContainer'
+import FormContainer from '../UIFormContainer';
 import Form from '../UIForm';
 import Field from '../UIField';
 import Button from '../UIButton';
 
-const schema = Yup.object().shape({
-})
+// --- for usage:
+// import { SingleSelect, MultiSelect } from '../../lib/custom';
+// --- for compiling:
+// import SingleSelect from '../custom/SingleSelect'; // requires 'react-select' => increase bundle size
+// import MultiSelect from '../custom/MultiSelect'; // requires 'react-select' => increase bundle size
+
+const schema = Yup.object().shape({});
 
 export default class extends React.Component {
-
   onSubmit = (values: any, { setSubmitting }: any) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
@@ -20,7 +24,7 @@ export default class extends React.Component {
       log('onSubmit')(values);
     }, 800);
     setSubmitting(true);
-  }
+  };
 
   renderForm = (props: any) => {
     return (
@@ -32,8 +36,8 @@ export default class extends React.Component {
         <Field radios options={genders} name="radio" />
         <Field checkboxes options={roles} name="checkboxes" />
         <Field checkbox name="singleCheckbox" />
-        <Field singleSelect options={animals.slice(1)} name="singleSelect" />
-        <Field multiSelect options={animals.slice(1)} name="multiSelect" />
+        {/* <Field custom={SingleSelect} options={animals.slice(1)} name="singleSelect" />
+        <Field custom={MultiSelect} options={animals.slice(1)} name="multiSelect" /> */}
         <Field tagSelect name="tags" options={animals.slice(1)} />
         <Field number name="number" />
         <Field date name="date" />
@@ -43,12 +47,30 @@ export default class extends React.Component {
         <Field file withPreview label="File Upload (with Preview)" name="file2" />
         <Field range name="range" />
 
+        {/* ---------- example of Custom Field with Formik ---------- */}
+        {/* <UIField
+          label="Custom Field: (React Multi Select)"
+          name="customMultiSelect"
+          renderField={() => (
+            <Select
+              multi
+              value={formikProps.values.customMultiSelect}
+              placeholder={'Select an item...'}
+              options={roles}
+              searchable={true}
+              onChange={(item: any) => {
+                formikProps.setFieldValue('customMultiSelect', item)
+              }}
+            />
+          )}
+        /> */}
+
         <Button type="submit" />
         <Button gap={10}>Button</Button>
         <DisplayFormState {...props} />
       </Form>
-    )
-  }
+    );
+  };
 
   render() {
     return (

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
-import * as ReactTags from 'react-tag-autocomplete'
-import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils'
-import * as _get from 'lodash.get'
-import SingleSelect from './custom/SingleSelect';
-import MultiSelect from './custom/MultiSelect';
+import * as ReactTags from 'react-tag-autocomplete';
+import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils';
+import * as _get from 'lodash.get';
+// import SingleSelect from './custom/SingleSelect'; // requires 'react-select' => increase bundle size
+// import MultiSelect from './custom/MultiSelect'; // requires 'react-select' => increase bundle size
 
 const getClasses = (use: string, isHorizontal: boolean) => {
   const defaults = {
@@ -20,8 +20,7 @@ const getClasses = (use: string, isHorizontal: boolean) => {
     help: 'ui-help'
   };
   if (use === 'bootstrap3' || use === 'bootstrap4') {
-    defaults.group =
-      'form-group' + (isHorizontal ? ' row' : '') + ''
+    defaults.group = 'form-group' + (isHorizontal ? ' row' : '') + '';
     defaults.control = 'form-control';
     defaults.row = 'form-row';
     defaults.file = 'ui-field ui-bootstrap-file';
@@ -51,19 +50,17 @@ const getClasses = (use: string, isHorizontal: boolean) => {
 function Checkbox(props: any) {
   return (
     <Field name={props.name}>
-      {({ field, form } : { field: any, form: any }) => (
+      {({ field, form }: { field: any; form: any }) => (
         <label>
           <input
             type="checkbox"
             {...props}
             checked={field.value && field.value.includes(props.value)}
             onChange={() => {
-              let nextValue
-              field.value = field.value || []
+              let nextValue;
+              field.value = field.value || [];
               if (field.value.includes(props.value)) {
-                nextValue = field.value.filter(
-                  (value: any) => value !== props.value
-                );
+                nextValue = field.value.filter((value: any) => value !== props.value);
                 form.setFieldValue(props.name, nextValue);
               } else {
                 nextValue = field.value.concat(props.value);
@@ -83,7 +80,7 @@ function Checkbox(props: any) {
 function Radio(props: any) {
   return (
     <Field name={props.name}>
-      {({ field, form } : { field: any, form: any }) => {
+      {({ field, form }: { field: any; form: any }) => {
         return (
           <label>
             <input
@@ -98,7 +95,7 @@ function Radio(props: any) {
             &nbsp;
             {props.label}
           </label>
-        )
+        );
       }}
     </Field>
   );
@@ -107,9 +104,9 @@ function Radio(props: any) {
 function UIToggle(props: any) {
   return (
     <Field name={props.name}>
-      {({ field, form } : { field: any, form: any }) => {
-        const formVal = form.values[props.name] // field value form formik.values
-        const checked = typeof formVal !== 'undefined' ? formVal : false
+      {({ field, form }: { field: any; form: any }) => {
+        const formVal = form.values[props.name]; // field value form formik.values
+        const checked = typeof formVal !== 'undefined' ? formVal : false;
         return (
           <Toggle
             icons={false}
@@ -120,14 +117,14 @@ function UIToggle(props: any) {
               props.onChange && props.onChange({ value: e.target.checked, event: e, formik: form });
             }}
           />
-        )
+        );
       }}
     </Field>
   );
 }
 
 interface IThumb {
-  file: any
+  file: any;
 }
 class Thumb extends React.Component<IThumb> {
   state = {
@@ -136,7 +133,9 @@ class Thumb extends React.Component<IThumb> {
   };
 
   componentWillReceiveProps(nextProps: any) {
-    if (!nextProps.file) { return; }
+    if (!nextProps.file) {
+      return;
+    }
 
     this.setState({ loading: true }, () => {
       let reader = new FileReader();
@@ -153,30 +152,38 @@ class Thumb extends React.Component<IThumb> {
     const file = this.props.file;
     const { loading, thumb } = this.state;
 
-    if (!file) { return null; }
+    if (!file) {
+      return null;
+    }
 
     // if (loading) { return <p>loading...</p>; } // this causes flickering when changing other fields.
 
-    return (<img src={thumb} alt={file.name} className="ui-thumb" />);
+    return <img src={thumb} alt={file.name} className="ui-thumb" />;
   }
 }
 
 function FileUpload(props: any) {
   return (
     <Field name={props.name}>
-      {({ field, form } : { field: any, form: any }) => {
+      {({ field, form }: { field: any; form: any }) => {
         return (
           <React.Fragment>
-            <input id={props.id || props.name} name={props.name} type="file" className={props.className || ''} onChange={(event) => {
-              form.setFieldValue(props.name, event.currentTarget.files[0]);
-              props.onChange && props.onChange({ value: event.currentTarget.files[0], event, formik: form });
-            }} />
+            <input
+              id={props.id || props.name}
+              name={props.name}
+              type="file"
+              className={props.className || ''}
+              onChange={event => {
+                form.setFieldValue(props.name, event.currentTarget.files[0]);
+                props.onChange && props.onChange({ value: event.currentTarget.files[0], event, formik: form });
+              }}
+            />
             {props.withPreview && <Thumb file={form.values[props.name]} />}
           </React.Fragment>
-        )
+        );
       }}
     </Field>
-  )
+  );
 }
 
 function Row(props: any) {
@@ -184,141 +191,158 @@ function Row(props: any) {
     return React.Children.map(props.children, (child: any, index: number) => {
       return React.cloneElement(child, {
         key: index,
-        className: "col-md-6"
-      })
-    })
+        className: 'col-md-6'
+      });
+    });
   }
 
-  return (
-    <div className={props.className}>
-      {renderChildren()}
-    </div>
-  )
+  return <div className={props.className}>{renderChildren()}</div>;
 }
 
 interface UIFieldProps {
-  className?: string
-  controlCss?: string
-  labelCss?: string
-  toggleCss?: string
-  fileCss?: string
-  rowCss?: string
-  errorCss?: string
-  helpCss?: string
-  label?: string|any // TODO: use correct type string|JSX
-  placeholder?: string
-  name?: string
-  help?: string|any
+  className?: string;
+  controlCss?: string;
+  labelCss?: string;
+  toggleCss?: string;
+  fileCss?: string;
+  rowCss?: string;
+  errorCss?: string;
+  helpCss?: string;
+  label?: string | any; // TODO: use correct type string|JSX
+  placeholder?: string;
+  name?: string;
+  help?: string | any;
   // --- field types:
-  row?: string|boolean
-  password?: string|boolean
-  number?: string|boolean
-  date?: string|boolean
-  time?: string|boolean
-  range?: string|boolean
-  radio?: string|boolean
-  radios?: string|boolean
-  checkbox?: string|boolean
-  checkboxes?: string|boolean
-  select?: string|boolean
-  tagSelect?: string|boolean
-  singleSelect?: string|boolean
-  multiSelect?: string|boolean
-  options?: any[]
-  toggle?: string|boolean
-  inline?: string|boolean
-  textarea?: string|boolean
-  file?: string|boolean
-  withPreview?: string|boolean
-  renderField?: (props?: any) => void
+  row?: string | boolean;
+  password?: string | boolean;
+  number?: string | boolean;
+  date?: string | boolean;
+  time?: string | boolean;
+  range?: string | boolean;
+  radio?: string | boolean;
+  radios?: string | boolean;
+  checkbox?: string | boolean;
+  checkboxes?: string | boolean;
+  select?: string | boolean;
+  tagSelect?: string | boolean;
+  singleSelect?: string | boolean;
+  multiSelect?: string | boolean;
+  custom?: any;
+  options?: any[];
+  toggle?: string | boolean;
+  inline?: string | boolean;
+  textarea?: string | boolean;
+  file?: string | boolean;
+  withPreview?: string | boolean;
+  renderField?: (props?: any) => void;
   // --- handlers:
-  value?: any
-  onChange?: (val: any) => void
-  disabled?: boolean
-  validate?: any // TODO: use correct type
-  children?: any
-  formik?: any
+  value?: any;
+  onChange?: (val: any) => void;
+  disabled?: boolean;
+  validate?: any; // TODO: use correct type
+  children?: any;
+  formik?: any;
 }
 
 const UIField = (props: UIFieldProps) => {
-  const { label, placeholder, fieldName } = getChildrenParts(props)
+  const { label, placeholder, fieldName } = getChildrenParts(props);
   const labelText = label || toPascalCase(fieldName);
 
   const errors = props.formik.errors;
 
-  const touched = _get(props.formik.touched, fieldName)
-  const isTouched = Array.isArray(touched) ? false : touched
-  const hasErrors =
-    _get(props.formik.errors, fieldName) &&
-    (isTouched || props.formik.submitCount > 0)
+  const touched = _get(props.formik.touched, fieldName);
+  const isTouched = Array.isArray(touched) ? false : touched;
+  const hasErrors = _get(props.formik.errors, fieldName) && (isTouched || props.formik.submitCount > 0);
 
   const classes = getClasses(props.formik.ezUse, props.formik.ezHorizontal);
-  const css = props.formik.ezCss || {}
-  const labelCss = css.label || props.labelCss || ''
-  const labelClass = labelCss ? `${classes.label} ${labelCss}` : classes.label
+  const css = props.formik.ezCss || {};
+  const labelCss = css.label || props.labelCss || '';
+  const labelClass = labelCss ? `${classes.label} ${labelCss}` : classes.label;
 
-  const controlCss = css.control || props.controlCss || ''
-  const controlClass = cn(classes.control, controlCss)
+  const controlCss = css.control || props.controlCss || '';
+  const controlClass = cn(classes.control, controlCss);
 
-  const toggleCss = css.toggle || props.toggleCss || ''
-  const toggleClass =  cn(classes.toggle, toggleCss)
+  const toggleCss = css.toggle || props.toggleCss || '';
+  const toggleClass = cn(classes.toggle, toggleCss);
 
-  const fileCss = css.file || props.fileCss || ''
-  const fileClass = cn(classes.file, fileCss)
+  const fileCss = css.file || props.fileCss || '';
+  const fileClass = cn(classes.file, fileCss);
 
-  const rowCss = css.row || props.rowCss || ''
-  const rowClass = cn(classes.row, rowCss)
+  const rowCss = css.row || props.rowCss || '';
+  const rowClass = cn(classes.row, rowCss);
 
-  const errorCss = css.error || props.errorCss || ''
-  const errorClass = cn(classes.error, errorCss)
+  const errorCss = css.error || props.errorCss || '';
+  const errorClass = cn(classes.error, errorCss);
 
-  const helpCss = css.help || props.helpCss || ''
-  const helpClass = cn(classes.help, helpCss)
+  const helpCss = css.help || props.helpCss || '';
+  const helpClass = cn(classes.help, helpCss);
 
-  let options = null
+  let options = null;
   if (isOptionArray(props.options)) {
-    options = props.options.map((opt: any) => <option key={opt.value} value={opt.value}>{opt.label}</option>)
+    options = props.options.map((opt: any) => (
+      <option key={opt.value} value={opt.value}>
+        {opt.label}
+      </option>
+    ));
   }
-  const Label = (props: any) => (
-    <label htmlFor={props.for || fieldName} className={labelClass}>
-      {labelText}
-    </label>
-  )
+  const Label = (compProps: any) => {
+    if (props.label === '') {
+      return <label htmlFor={compProps.for || fieldName} className={labelClass} />;
+    }
+    if (props.label === null) {
+      return null;
+    }
+    return (
+      <label htmlFor={compProps.for || fieldName} className={labelClass}>
+        {labelText}
+      </label>
+    );
+  };
   const ErrorMessage = () => {
-    return hasErrors ? (
-      <span className={errorClass}>{_get(errors, fieldName)}</span>
-    ) : null
-  }
+    return hasErrors ? <span className={errorClass}>{_get(errors, fieldName)}</span> : null;
+  };
 
   const clonedProps = {
-    ...props,
+    ...props
     // className: '' // don't pass props.className to children
-  }
+  };
 
   const commonProps: any = {
     label: labelText,
     name: fieldName,
     value: props.value,
     onChange: props.onChange
-  }
+  };
 
-  const moreProps: any = {}
+  const moreProps: any = {};
   if (props.textarea) {
-    moreProps.component = 'textarea'
+    moreProps.component = 'textarea';
   }
-  const mainClassName = classes.group + cn(props.className)
+  const mainClassName = classes.group + cn(props.className);
 
   if (props.select) {
     // --- native select: (we need customization & search => use SearchableSelect)
-    moreProps.key = `fieldkey_${+new Date()}`
-    moreProps.component = 'select'
+    moreProps.key = `fieldkey_${+new Date()}`;
+    moreProps.component = 'select';
   }
-  ;['number', 'password', 'date', 'time', 'range'].map(type => {
+  ['number', 'password', 'date', 'time', 'range'].map(type => {
     if (props.hasOwnProperty(type)) {
-      moreProps.type = type // HTML5 input types
+      moreProps.type = type; // HTML5 input types
     }
-  })
+  });
 
+  if (props.custom) {
+    return (
+      <div className={mainClassName}>
+        <Label />
+        <props.custom {...props} className={`${hasErrors ? classes.invalidControl : ''}`} />
+        <small className={helpClass}>{props.help}</small>
+        <ErrorMessage />
+      </div>
+    );
+  }
+  /*
+  // --- singleSelect & multiSelect increase bundle size => let user import them when needed.
   if (props.singleSelect) {
     return (
       <div className={mainClassName}>
@@ -339,7 +363,7 @@ const UIField = (props: UIFieldProps) => {
         <ErrorMessage/>
       </div>
     )
-  }
+  } */
 
   // ------ render <Field row .../>
   if (props.row) {
@@ -349,46 +373,41 @@ const UIField = (props: UIFieldProps) => {
           {props.children}
         </Row>
       </div>
-    )
+    );
   }
   // ------ render <Field toggle .../>
   if (props.toggle) {
     return (
       <div className={mainClassName}>
-        <Label/>
-        <UIToggle
-          {...commonProps}
-          className={props.inline ? `${toggleClass}-inline` : toggleClass}
-        />
-        <ErrorMessage/>
+        <Label />
+        <UIToggle {...commonProps} className={props.inline ? `${toggleClass}-inline` : toggleClass} />
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ render <Field file .../>
   if (props.file) {
     return (
       <div className={mainClassName}>
-        <Label/>
+        <Label />
         <FileUpload
           {...commonProps}
           withPreview={props.withPreview}
           className={`${fileClass} ${hasErrors ? classes.invalidControl : ''}`}
         />
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ render <Field checkbox .../> - form value has Boolean Type (true/false)
   if (props.checkbox && typeof props.value === 'undefined') {
-    const randomId = `id_${Math.random().toString().slice(2)}`
-    const val = props.formik.values[fieldName]
-    const disabled = props.disabled
+    const randomId = `id_${Math.random()
+      .toString()
+      .slice(2)}`;
+    const val = props.formik.values[fieldName];
+    const disabled = props.disabled;
     return (
-      <div
-        className={`${mainClassName} ${
-          disabled ? 'ui-field-disabled' : ''
-          }`}
-      >
+      <div className={`${mainClassName} ${disabled ? 'ui-field-disabled' : ''}`}>
         <input
           type="checkbox"
           id={randomId}
@@ -396,17 +415,17 @@ const UIField = (props: UIFieldProps) => {
           name={fieldName}
           checked={!!val}
           onChange={(ev: any) => {
-            const val = ev.target.checked
-            props.formik.setFieldValue(fieldName, val)
-            props.onChange && props.onChange({ value: val, event: ev, formik: props.formik })
+            const val = ev.target.checked;
+            props.formik.setFieldValue(fieldName, val);
+            props.onChange && props.onChange({ value: val, event: ev, formik: props.formik });
           }}
         />
         &nbsp;
-        <Label for={randomId}/>
+        <Label for={randomId} />
         <small className={helpClass}>{props.help}</small>
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ render <Field checkbox value .../> - checkbox has value prop => form value has Array Type
   if (props.checkbox && typeof props.value !== 'undefined') {
@@ -414,29 +433,21 @@ const UIField = (props: UIFieldProps) => {
       <div className={mainClassName}>
         <Checkbox {...commonProps} />
       </div>
-    )
+    );
   }
   // ------ render <Field checkboxes options={} .../>
   if (props.checkboxes && props.options) {
     return (
       <div className={mainClassName}>
-        <Label/>
-        <div
-          className={`ui-field-full ${hasErrors ? classes.invalidControl : ''}`}
-        >
+        <Label />
+        <div className={`ui-field-full ${hasErrors ? classes.invalidControl : ''}`}>
           {props.options.map((opt: any) => (
-            <Checkbox
-              key={opt.value}
-              label={opt.label}
-              name={fieldName}
-              value={opt.value}
-              onChange={props.onChange}
-            />
+            <Checkbox key={opt.value} label={opt.label} name={fieldName} value={opt.value} onChange={props.onChange} />
           ))}
         </div>
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ radio <Field radio .../>
   if (props.radio) {
@@ -444,40 +455,32 @@ const UIField = (props: UIFieldProps) => {
       <div className={mainClassName}>
         <Radio {...commonProps} />
       </div>
-    )
+    );
   }
   // ------ radios <Field radios options={} .../>
   if (props.radios && props.options) {
     return (
       <div className={mainClassName}>
-        <Label/>
-        <div
-          className={`ui-field-full ${hasErrors ? classes.invalidControl : ''}`}
-        >
+        <Label />
+        <div className={`ui-field-full ${hasErrors ? classes.invalidControl : ''}`}>
           {props.options.map((opt: any) => (
-            <Radio
-              key={opt.value}
-              label={opt.label}
-              name={fieldName}
-              value={opt.value}
-              onChange={props.onChange}
-            />
+            <Radio key={opt.value} label={opt.label} name={fieldName} value={opt.value} onChange={props.onChange} />
           ))}
         </div>
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ render custom field <Field renderField={(props) => <ReactSelect ... />}   </Field>
   if (props.renderField) {
     return (
       <div className={mainClassName}>
-        <Label/>
+        <Label />
         {props.renderField(props)}
         <small className={helpClass}>{props.help}</small>
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
   // ------ render multi select <Field multiSelect options={} .../>
   // if (props.multiSelect) {
@@ -492,28 +495,28 @@ const UIField = (props: UIFieldProps) => {
   // }
 
   if (props.tagSelect) {
-    const values = props.formik.values[fieldName] || []
-    const { options = [] } = clonedProps
-    delete clonedProps.className
+    const values = props.formik.values[fieldName] || [];
+    const { options = [] } = clonedProps;
+    delete clonedProps.className;
 
     const tags = values.map((id: string) => {
-      const selectedOption = options['find'](option => (option.value === id))
+      const selectedOption = options['find'](option => option.value === id);
       if (selectedOption) {
         return {
           id: selectedOption.value,
-          name: selectedOption.label,
-        }
+          name: selectedOption.label
+        };
       } else {
         return {
           id,
-          name: id,
-        }
+          name: id
+        };
       }
-    })
-    const suggestions = options.map(({ label, value }) => ({ id: value, name: label }))
+    });
+    const suggestions = options.map(({ label, value }) => ({ id: value, name: label }));
     return (
       <div className={mainClassName}>
-        <Label/>
+        <Label />
         <ReactTags
           addOnBlur={true}
           allowNew={true}
@@ -525,43 +528,42 @@ const UIField = (props: UIFieldProps) => {
           suggestions={suggestions}
           handleValidate={({ name }: { name: string }) => name.length}
           handleAddition={({ name }: { name: string }) => {
-            const foundOpt = options['find'](option => (option.label === name))
-            const changedValue = foundOpt ? foundOpt.value : name
-            values.push(changedValue)
-            props.formik.setFieldValue(fieldName, values)
-            props.onChange && props.onChange({ value: changedValue, formik: props.formik })
+            const foundOpt = options['find'](option => option.label === name);
+            const changedValue = foundOpt ? foundOpt.value : name;
+            values.push(changedValue);
+            props.formik.setFieldValue(fieldName, values);
+            props.onChange && props.onChange({ value: changedValue, formik: props.formik });
           }}
           handleDelete={(index: number) => {
-            values.splice(index, 1)
-            props.formik.setFieldValue(fieldName, values)
-            props.onChange && props.onChange({ formik: props.formik, index })
+            values.splice(index, 1);
+            props.formik.setFieldValue(fieldName, values);
+            props.onChange && props.onChange({ formik: props.formik, index });
           }}
-
           {...clonedProps}
         />
         <small className={helpClass}>{props.help}</small>
-        <ErrorMessage/>
+        <ErrorMessage />
       </div>
-    )
+    );
   }
 
   // ------ regular field
-  delete clonedProps.onChange // otherwise it will override the FastField onChange handler below.
+  delete clonedProps.onChange; // otherwise it will override the FastField onChange handler below.
   // delete to avoid react warning (it requires passing select="true", not shorthands like select, etc.)
-  deleteProperties(clonedProps, ['select', 'number', 'password', 'date', 'time', 'range', 'textarea'])
+  deleteProperties(clonedProps, ['select', 'number', 'password', 'date', 'time', 'range', 'textarea']);
   return (
     <div className={mainClassName}>
-      <Label/>
+      <Label />
       <FastField
         name={fieldName}
         placeholder={placeholder}
         onChange={(ev: React.ChangeEvent<any>) => {
-          props.formik.handleChange(ev)
+          props.formik.handleChange(ev);
           if (_get(ev, 'nativeEvent.target.tagName') === 'INPUT') {
             props.onChange &&
-            props.onChange({ value: _get(ev, 'nativeEvent.target.value'), event: ev, formik: props.formik }) // input's value
+              props.onChange({ value: _get(ev, 'nativeEvent.target.value'), event: ev, formik: props.formik }); // input's value
           } else {
-            props.onChange && props.onChange({ event: ev, formik: props.formik }) // generic event
+            props.onChange && props.onChange({ event: ev, formik: props.formik }); // generic event
           }
         }}
         validate={props.validate}
@@ -573,8 +575,8 @@ const UIField = (props: UIFieldProps) => {
       </FastField>
       <small className={helpClass}>{props.help}</small>
 
-      <ErrorMessage/>
+      <ErrorMessage />
     </div>
-  )
+  );
 };
 export default connect(UIField);

@@ -1,14 +1,16 @@
 import * as React from 'react';
 import * as Yup from 'yup';
-import { animals, genders, roles, DisplayFormState } from '../Utils'
+import { animals, genders, roles, DisplayFormState } from '../Utils';
 
-import FormContainer from '../UIFormContainer'
+import FormContainer from '../UIFormContainer';
 import Form from '../UIForm';
 import Field from '../UIField';
 import Button from '../UIButton';
 
 const schema = Yup.object().shape({
-  email: Yup.string().required('Email is required!').email('Invalid Email!'),
+  email: Yup.string()
+    .required('Email is required!')
+    .email('Invalid Email!'),
   birthday: Yup.date().required('Birthday is required!'),
   roles: Yup.array().required('Role(s) is required!')
 });
@@ -22,7 +24,7 @@ export default class extends React.Component {
       setSubmitting(false);
     }, 800);
     setSubmitting(true);
-  }
+  };
 
   renderForm = (props: any) => (
     <Form use="bootstrap4">
@@ -33,28 +35,32 @@ export default class extends React.Component {
       <Field checkboxes options={roles} name="roles" />
 
       <Button type="submit" disabled={props.isSubmitting} />
-      <Button gap={10} disabled>Cancel</Button>
+      <Button gap={10} disabled>
+        Cancel
+      </Button>
 
       <DisplayFormState {...props} />
     </Form>
-  )
+  );
 
   renderHorizontalForm = (props: any) => {
     const css = {
       error: 'left25pct'
-    }
+    };
     return (
       <Form use="bootstrap4" horizontal css={css}>
         <Field name="email" />
         <Field placeholder="Date of birth (mm/dd/yyyy)" name="birthday" />
 
         <Button leftGap={'25%'} type="submit" disabled={props.isSubmitting} />
-        <Button gap={10} disabled>Cancel</Button>
+        <Button gap={10} disabled>
+          Cancel
+        </Button>
 
         <DisplayFormState {...props} />
       </Form>
-    )
-  }
+    );
+  };
 
   render() {
     return (

@@ -1,24 +1,22 @@
 import * as React from 'react';
 import * as Yup from 'yup';
-import { DisplayFormState } from '../Utils'
-import { log, roles } from '../Utils'
+import { DisplayFormState } from '../Utils';
+import { log, roles } from '../Utils';
 
-import FormContainer from '../UIFormContainer'
+import FormContainer from '../UIFormContainer';
 import Form from '../UIForm';
 import Field from '../UIField';
 import Button from '../UIButton';
 
 export const genders = [
-  { value: '', label: 'N/A'},
-  { value: 'MALE', label: 'Male', render: () => <Field>Wife Name | wifeName</Field>},
-  { value: 'FEMALE', label: 'Female'}
-]
+  { value: '', label: 'N/A' },
+  { value: 'MALE', label: 'Male', render: () => <Field>Wife Name | wifeName</Field> },
+  { value: 'FEMALE', label: 'Female' }
+];
 
-const schema = Yup.object().shape({
-})
+const schema = Yup.object().shape({});
 
 export default class extends React.Component {
-
   onSubmit = (values: any, { setSubmitting }: any) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
@@ -26,10 +24,10 @@ export default class extends React.Component {
       log('onSubmit')(values);
     }, 800);
     setSubmitting(true);
-  }
+  };
 
   renderForm = (props: any) => {
-    const gender = props.values.gender
+    const gender = props.values.gender;
     return (
       <Form use="bootstrap4">
         <Field onChange={log('email - onChange')}>Email | email</Field>
@@ -46,13 +44,13 @@ export default class extends React.Component {
         <Button type="submit" />
         <DisplayFormState {...props} />
       </Form>
-    )
-  }
+    );
+  };
 
   onGenderChange = (props: any) => {
-    delete props.values.husbandName
-    delete props.values.wifeName
-  }
+    delete props.values.husbandName;
+    delete props.values.wifeName;
+  };
 
   render() {
     return (

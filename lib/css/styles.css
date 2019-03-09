@@ -178,13 +178,17 @@
   color: #6E6E6E;
 }
 
+/* --- demo --- */
+
+.uff-active { color: blue; }
+
 /* --- override bootstrap --- */
 
 .is-invalid ~.invalid-feedback {
   display: block; /* to fix checkboxes error message */
 }
 
-/* react-toggle */
+/* --- react-toggle --- */
 
 .react-toggle {
   touch-action: pan-x;
