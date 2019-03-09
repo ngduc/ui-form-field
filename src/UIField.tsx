@@ -3,7 +3,7 @@ import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
 import * as ReactTags from 'react-tag-autocomplete';
 import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils';
-import * as _get from 'lodash.get';
+const _get = require('lodash.get');
 // import SingleSelect from './custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from './custom/MultiSelect'; // requires 'react-select' => increase bundle size
 

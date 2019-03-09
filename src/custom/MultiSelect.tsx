@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
-import * as _get from 'lodash.get';
+const _get = require('lodash.get');
 
 // import * as css from './SingleSelect.css'
 interface IProps {

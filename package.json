@@ -1,6 +1,6 @@
 {
   "name": "ui-form-field",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ui-form-field based on formik - a simple way to work with Forms in React.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -51,12 +51,12 @@
     "pick-react-known-prop": "^0.1.5",
     "react-select": "^2.4.0",
     "react-tag-autocomplete": "^5.8.0",
-    "react-toggle": "^4.0.2",
-    "yup": "^0.26.6"
+    "react-toggle": "^4.0.2"
   },
   "peerDependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -88,7 +88,8 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.0.3",
+    "yup": "^0.26.6"
   },
   "resolutions": {
     "event-stream": "4.0.1"
