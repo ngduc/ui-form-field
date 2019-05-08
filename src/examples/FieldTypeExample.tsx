@@ -8,9 +8,10 @@ import Form from '../UIForm';
 import Field from '../UIField';
 import Button from '../UIButton';
 
-// --- for usage:
+// --- for usage: (in this example)
 // import { SingleSelect, MultiSelect, TagSelect } from '../../lib/custom';
-// --- for compiling:
+
+// --- for compiling: (will increase bundle size)
 // import SingleSelect from '../custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from '../custom/MultiSelect'; // requires 'react-select' => increase bundle size
 // import TagSelect from '../custom/TagSelect'; // requires 'react-tag-autocomplete' => increase bundle size

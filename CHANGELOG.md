@@ -1,3 +1,9 @@
+## [1.2.0] - 05/07/2019
+
+### Changed
+- replaced lodash with util functions to reduce bundle size
+- upgrade dependencies
+
 ## [1.1.5] - 03/08/2019
 
 ### Added

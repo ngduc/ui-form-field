@@ -7,6 +7,9 @@ try {
     execSync('curl http://localhost:3003')
       .toString()
       .indexOf('Failed to connect') < 0;
+
+  console.log('---');
+  console.log('NOTE: DEV is already up & running. Please terminate it first!');
 } catch (e) {}
 
 // if UI is not up => start UI

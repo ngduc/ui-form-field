@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect, Field, FastField } from 'formik';
 import Toggle from 'react-toggle';
-import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties } from './Utils';
-const _get = require('lodash.get');
+import { cn, getChildrenParts, isOptionArray, toPascalCase, deleteProperties, deepFind } from './Utils';
+
 // import SingleSelect from './custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from './custom/MultiSelect'; // requires 'react-select' => increase bundle size
 // import TagSelect from './custom/TagSelect';
@@ -250,9 +250,9 @@ const UIField = (props: UIFieldProps) => {
 
   const errors = props.formik.errors;
 
-  const touched = _get(props.formik.touched, fieldName);
+  const touched = deepFind(props.formik.touched, fieldName);
   const isTouched = Array.isArray(touched) ? false : touched;
-  const hasErrors = _get(props.formik.errors, fieldName) && (isTouched || props.formik.submitCount > 0);
+  const hasErrors = deepFind(props.formik.errors, fieldName) && (isTouched || props.formik.submitCount > 0);
 
   const classes = getClasses(props.formik.ezUse, props.formik.ezHorizontal);
   const css = props.formik.ezCss || {};
@@ -299,7 +299,7 @@ const UIField = (props: UIFieldProps) => {
     );
   };
   const ErrorMessage = () => {
-    return hasErrors ? <span className={errorClass}>{_get(errors, fieldName)}</span> : null;
+    return hasErrors ? <span className={errorClass}>{deepFind(errors, fieldName)}</span> : null;
   };
 
   const clonedProps = {
@@ -506,9 +506,9 @@ const UIField = (props: UIFieldProps) => {
         placeholder={placeholder}
         onChange={(ev: React.ChangeEvent<any>) => {
           props.formik.handleChange(ev);
-          if (_get(ev, 'nativeEvent.target.tagName') === 'INPUT') {
+          if (deepFind(ev, 'nativeEvent.target.tagName') === 'INPUT') {
             props.onChange &&
-              props.onChange({ value: _get(ev, 'nativeEvent.target.value'), event: ev, formik: props.formik }); // input's value
+              props.onChange({ value: deepFind(ev, 'nativeEvent.target.value'), event: ev, formik: props.formik }); // input's value
           } else {
             props.onChange && props.onChange({ event: ev, formik: props.formik }); // generic event
           }

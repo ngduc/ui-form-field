@@ -32,7 +32,8 @@ export function clone(obj: any) {
   if (!obj) {
     return null;
   }
-  return JSON.parse(JSON.stringify(obj));
+  // return JSON.parse(JSON.stringify(obj));
+  return { ...obj };
 }
 
 // for shorthand syntax, extract { label, placeholder, name } from children string
@@ -100,4 +101,22 @@ export function toPascalCase(s: string) {
   return s.replace(/\w+/g, function(w) {
     return w[0].toUpperCase() + w.slice(1).toLowerCase();
   });
+}
+
+export function deepFind(obj: any, propPath: string, defaultVal?: any) {
+  if (typeof obj === 'undefined' || obj === null) {
+    return null;
+  }
+  let result = clone(obj);
+  const arr = typeof propPath === 'string' ? propPath.split('.') : [propPath];
+  for (const propName of arr) {
+    if (!result) {
+      return defaultVal;
+    }
+    if (!result.hasOwnProperty(propName)) {
+      return defaultVal;
+    }
+    result = result[propName];
+  }
+  return result;
 }

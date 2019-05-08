@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect, Form } from 'formik';
 import { clone } from './Utils';
-const _clone = require('lodash.clone');
+// const _clone = require('lodash.clone');
 
 const getClasses = (use: string) => {
   const defaults = {
@@ -50,7 +50,9 @@ const UIForm = (props: IUIFormProps) => {
   }
   props.formik.ezCss = customCss;
 
-  const clonedProps = _clone(props);
+  const clonedProps = {
+    ...props // clone
+  };
   clonedProps.horizontal = horizontal;
 
   const className = props.className ? `${classes.form} ${props.className}` : classes.form;

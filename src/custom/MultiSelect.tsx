@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
-const _get = require('lodash.get');
+import { deepFind } from '../Utils';
 
 // import * as css from './SingleSelect.css'
 interface IProps {
@@ -30,7 +30,7 @@ export default class MultiSelect extends React.Component<IProps> {
       return; // for backward compatibility, this prop will not trigger onChange when options changed.
     }
     const fieldName = newProps.name;
-    const val = _get(newProps.formik.values, fieldName);
+    const val = deepFind(newProps.formik.values, fieldName);
     // from the value => look up to find changedItem { label, value } to trigger onChange
     if (newProps.options && Array.isArray(newProps.options)) {
       const changedItem = newProps.options.find((opt: any) => opt.value === val);
@@ -52,7 +52,7 @@ export default class MultiSelect extends React.Component<IProps> {
     if (!options || options.length === 0) {
       placeholder = '';
     }
-    const val = _get(values, fieldName);
+    const val = deepFind(values, fieldName);
     const selectedOpt = options['find'](opt => opt.value === val);
     // className={`${css.main} ${classFieldName}`}
     return (
