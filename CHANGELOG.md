@@ -1,5 +1,7 @@
-## [1.2.1] - 05/07/2019
+## [1.2.2] - 05/07/2019
 
+### Added
+- typescript type files (*.d.ts)
 ### Changed
 - replaced lodash with util functions to reduce bundle size
 - upgrade dependencies

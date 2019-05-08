@@ -42,7 +42,7 @@ const UIForm = (props: IUIFormProps) => {
   props.formik.ezUse = props.use; // bootstrap, spectre, etc.
   props.formik.ezHorizontal = horizontal;
 
-  const customCss = clone(props.css);
+  const customCss = clone(props.css || {});
   if (props.formik.ezHorizontal) {
     customCss.form = customCss.form || classes.form;
     customCss.label = customCss.label || classes.label;

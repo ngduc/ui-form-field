@@ -1,8 +1,9 @@
 {
   "name": "ui-form-field",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "ui-form-field based on formik - a simple way to work with Forms in React.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "module": "es/index.js",
   "files": [
     "css",
@@ -11,7 +12,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "npm run clean && tsc --outDir ./lib --jsx react ./src/index.tsx && npm run postbuild",
+    "build": "npm run clean && tsc --declaration --outDir ./lib --jsx react ./src/index.tsx && npm run postbuild",
     "postbuild": "cp -R ./src/css ./lib && cp -R ./lib_custom/* ./lib/",
     "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
