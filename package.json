@@ -1,6 +1,6 @@
 {
   "name": "ui-form-field",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "ui-form-field based on formik - a simple way to work with Forms in React.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

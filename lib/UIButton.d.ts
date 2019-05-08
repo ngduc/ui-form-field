@@ -1,5 +1,5 @@
 import * as React from 'react';
-interface IEzButtonProps {
+interface IUIButtonProps {
     type?: string;
     primary?: string | boolean;
     secondary?: string | boolean;
@@ -12,5 +12,5 @@ interface IEzButtonProps {
     children?: any;
     formik?: any;
 }
-declare const _default: React.ComponentType<IEzButtonProps>;
+declare const _default: React.ComponentType<IUIButtonProps>;
 export default _default;

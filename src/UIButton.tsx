@@ -26,7 +26,7 @@ const getClasses = (use: string) => {
   return defaults;
 };
 
-interface IEzButtonProps {
+interface IUIButtonProps {
   type?: string;
   primary?: string | boolean;
   secondary?: string | boolean;
@@ -41,7 +41,7 @@ interface IEzButtonProps {
   formik?: any; // FormikContext<{}>
 }
 
-const EzButton = (props: IEzButtonProps) => {
+const EzButton = (props: IUIButtonProps) => {
   const classes = getClasses(props.formik.ezUse);
   const isSubmit = props.submit || props.type === 'submit';
   const type = isSubmit ? 'submit' : 'button';
