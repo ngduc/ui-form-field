@@ -11,7 +11,7 @@ import Button from '../UIButton';
 // --- for usage: (in this example)
 // import { SingleSelect, MultiSelect, TagSelect } from '../../lib/custom';
 
-// --- for compiling: (will increase bundle size)
+// --- for compiling: (when there are change(s), uncomment below to re-build & copy them to "lib_custom")
 // import SingleSelect from '../custom/SingleSelect'; // requires 'react-select' => increase bundle size
 // import MultiSelect from '../custom/MultiSelect'; // requires 'react-select' => increase bundle size
 // import TagSelect from '../custom/TagSelect'; // requires 'react-tag-autocomplete' => increase bundle size

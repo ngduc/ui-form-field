@@ -1,4 +1,4 @@
-## [1.2.0] - 05/07/2019
+## [1.2.1] - 05/07/2019
 
 ### Changed
 - replaced lodash with util functions to reduce bundle size

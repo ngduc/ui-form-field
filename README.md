@@ -9,7 +9,7 @@ A simple way to work with Forms in React.
 
 ### 🌟 Features
 
-- Lightweight: 26 kb
+- Lightweight: 24 kb
 - Render different `form layouts`: Bootstrap 4, Semantic UI, Spectre and more. (including horizontal layout, inline fields)
 - Compatible with `formik`. This is built on top of formik and can be used together with it (for custom fields, etc.)
 - Support custom advanced field types: react-select, multi-select, tag input with auto-complete.
@@ -56,6 +56,8 @@ RESULT: (Full form, validation (with yup) & error messages)
 $ yarn dev        Start Dev mode
 $ yarn test       Run tests (jest & puppeteer in headless mode)
 $ yarn build      Build (output to ./lib)
+
+$ yarn postbuild  Copy sources or pre-built files to "lib" for publishing to npm. (Note: this will override built files)
 ```
 
 ### 📖 Documentation
